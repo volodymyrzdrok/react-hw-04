@@ -1,16 +1,14 @@
 import React, { Component } from "react";
 import moviesApi from "../../services/moviesApi";
-// import HomePage from
 
 class ReviewsComp extends Component {
   state = {
     moviesReviews: [],
-    // searchQuery: "",
   };
   componentDidMount() {
-    // const { match } = this.props;
+    const { match } = this.props;
     moviesApi
-      .fetchFilmsReviews(this.props.match.params.movieId)
+      .fetchFilmsReviews(match.params.movieId)
       .then((moviesReviews) => this.setState({ moviesReviews }));
   }
 

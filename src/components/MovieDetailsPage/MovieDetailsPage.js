@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import moviesApi from "../../services/moviesApi";
-import { NavLink } from "react-router-dom";
 import styles from "./MovieDetailsPage.module.css";
+import { Route, NavLink } from "react-router-dom";
+import ReviewsComp from "../ReviewsComp/ReviewsComp";
+import Cast from "../Cast/Cast";
 
 class MovieDetailsPage extends Component {
   state = {
@@ -13,7 +15,6 @@ class MovieDetailsPage extends Component {
       .fetchFilmId(match.params.movieId)
       .then((movie) => this.setState({ movie }));
   }
-
   render() {
     const { movie } = this.state;
     const { match } = this.props;
@@ -26,7 +27,7 @@ class MovieDetailsPage extends Component {
                 src={`https://image.tmdb.org/t/p/w220_and_h330_face${movie.poster_path}`}
                 alt={movie.original_title}
               />
-              <div className="">
+              <div>
                 <h3>
                   {movie.original_title} ({movie.release_date.slice(0, 4)})
                 </h3>
@@ -38,9 +39,17 @@ class MovieDetailsPage extends Component {
               </div>
             </div>
             <h5>Addtional information</h5>
-            <NavLink to={`${match.url}/reviews`}>Reviews</NavLink>
-            <br />
             <NavLink to={`${match.url}/cast`}>Cast</NavLink>
+            <br />
+            <NavLink to={`${match.url}/reviews`}>Reviews</NavLink>
+            <Route path={`${match.path}/cast`} component={Cast} />
+            <Route path={`${match.path}/reviews`} component={ReviewsComp} />
+
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
           </>
         )}
       </>

@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 import moviesApi from "../../services/moviesApi";
+// import PropTypes from 'prop-types';
 
 class Cast extends Component {
-  static defaultProps = {
-    profile_path: "/27C77ni5XmlgkJVbomXPC4tHWVd.jpg",
-  };
+  // static defaultProps = {
+  //   profile_path: "/27C77ni5XmlgkJVbomXPC4tHWVd.jpg",
+  // };
+
+  // ПИТАННЯ ПО ЦЬОМУ
 
   state = {
     moviesCasts: [],
@@ -24,7 +27,11 @@ class Cast extends Component {
         {moviesCasts.map((movie) => (
           <li key={movie.credit_id}>
             <img
-              src={`https://image.tmdb.org/t/p/w138_and_h175_face${movie.profile_path}`}
+              src={`https://image.tmdb.org/t/p/w138_and_h175_face${
+                !movie.profile_path
+                  ? "/27C77ni5XmlgkJVbomXPC4tHWVd.jpg"
+                  : movie.profile_path
+              }`}
               alt={movie.name}
             />
             <h5>{movie.name}</h5>
