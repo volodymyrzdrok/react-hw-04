@@ -6,21 +6,24 @@ import { NavLink } from "react-router-dom";
 const Header = () => {
   return (
     <div className={styles.header}>
-      <NavLink
-        exact
-        to="/"
-        activeClassName={styles.linkMenuActive}
-        className={styles.linkMenu}
-      >
-        Home
-      </NavLink>
-      <NavLink
-        to="/movies"
-        activeClassName={styles.linkMenuActive}
-        className={styles.linkMenu}
-      >
-        Movies
-      </NavLink>
+      <div className="container">
+        {" "}
+        <NavLink
+          exact
+          to="/"
+          activeClassName={styles.linkMenuActive}
+          className={styles.linkMenu}
+        >
+          Home
+        </NavLink>
+        <NavLink
+          to="/movies"
+          activeClassName={styles.linkMenuActive}
+          className={styles.linkMenu}
+        >
+          Movies
+        </NavLink>
+      </div>
     </div>
   );
 };

@@ -1,22 +1,32 @@
 import React, { Component } from "react";
 import moviesApi from "../../services/moviesApi";
+import LoaderSpinner from "../Loader/Loader";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
-class ReviewsComp extends Component {
+export default class ReviewsComp extends Component {
   state = {
     moviesReviews: [],
+    text: "",
+    loader: false,
+    error: null,
   };
   componentDidMount() {
+    this.setState({ loader: true });
     const { match } = this.props;
     moviesApi
       .fetchFilmsReviews(match.params.movieId)
-      .then((moviesReviews) => this.setState({ moviesReviews }));
+      .then((moviesReviews) => this.setState({ moviesReviews }))
+      .catch((error) => this.setState({ error, text: error.message }))
+      .finally(() => this.setState({ loader: false }));
   }
 
   render() {
-    const { moviesReviews } = this.state;
+    const { moviesReviews, error, text, loader } = this.state;
 
     return (
       <>
+        {error && <ErrorMessage text={text} />}
+        {loader && <LoaderSpinner />}
         {moviesReviews.length > 0 ? (
           <ul>
             {moviesReviews.map((reviews) => (
@@ -33,5 +43,3 @@ class ReviewsComp extends Component {
     );
   }
 }
-
-export default ReviewsComp;

@@ -12,18 +12,20 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <Switch>
-        <Route exact path={routes.home} component={HomePage} />
-        <Route exact path={routes.movies} component={MoviesPage} />
-        <Route
-          // exact
-          path={routes.movieId}
-          component={MovieDetailsPage}
-        />
-        {/* <Route path={routes.cast} component={Cast} /> */}
-        {/* <Route path={routes.reviews} component={ReviewsComp} /> */}
-        <Redirect to={routes.home} />
-      </Switch>
+      <div className="container">
+        <Switch>
+          <Route exact path={routes.home} component={HomePage} />
+          <Route exact path={routes.movies} component={MoviesPage} />
+          <Route
+            // exact
+            path={routes.movieId}
+            component={MovieDetailsPage}
+          />
+          {/* <Route path={routes.cast} component={Cast} /> */}
+          {/* <Route path={routes.reviews} component={ReviewsComp} /> */}
+          <Redirect to={routes.home} />
+        </Switch>
+      </div>
     </div>
   );
 }
