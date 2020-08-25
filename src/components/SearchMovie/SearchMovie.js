@@ -7,9 +7,14 @@ class SearchMovie extends Component {
   };
 
   hendleSubmit = (e) => {
+    const { value } = this.state;
     e.preventDefault();
-    this.props.hendleChangeQuery(this.state.value);
-    this.setState({ value: "" });
+    if (value.replace(/\s/g, "") === "") {
+      return;
+    } else {
+      this.props.hendleChangeQuery(value);
+      this.setState({ value: "" });
+    }
   };
 
   hendleChange = (e) => {
