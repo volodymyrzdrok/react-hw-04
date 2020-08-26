@@ -1,13 +1,13 @@
 import React, { Component } from "react";
+import { Route, NavLink } from "react-router-dom";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
+import ReviewsComp from "../ReviewsComp/ReviewsComp";
+import LoaderSpinner from "../Loader/Loader";
+import UndoIcon from "@material-ui/icons/Undo";
+import Cast from "../Cast/Cast";
 import moviesApi from "../../services/moviesApi";
 import styles from "./MovieDetailsPage.module.css";
-import { Route, NavLink } from "react-router-dom";
-import ReviewsComp from "../ReviewsComp/ReviewsComp";
-import Cast from "../Cast/Cast";
-import UndoIcon from "@material-ui/icons/Undo";
 import routes from "../../routes";
-import LoaderSpinner from "../Loader/Loader";
-import ErrorMessage from "../ErrorMessage/ErrorMessage";
 // import PropTypes from "prop-types";
 
 export default class MovieDetailsPage extends Component {
@@ -62,8 +62,6 @@ export default class MovieDetailsPage extends Component {
           {<UndoIcon />} Go back
         </button>
         {error && <ErrorMessage text={text} />}
-        {/* {loader && <LoaderSpinner />} */}
-
         {!movie ? (
           <LoaderSpinner />
         ) : (

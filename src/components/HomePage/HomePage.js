@@ -1,13 +1,12 @@
 import React, { Component } from "react";
-import moviesApi from "../../services/moviesApi";
 import { NavLink } from "react-router-dom";
+import moviesApi from "../../services/moviesApi";
 import LoaderSpinner from "../Loader/Loader";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
 export default class HomePage extends Component {
   state = {
     movies: [],
-
     text: "",
     loader: false,
     error: null,
@@ -28,7 +27,6 @@ export default class HomePage extends Component {
       <>
         <h2>Trending today</h2>
         {error && <ErrorMessage text={text} />}
-
         {loader ? (
           <LoaderSpinner />
         ) : (
