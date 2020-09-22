@@ -61,16 +61,20 @@ const MoviesPage = ({ match }) => {
       {loader ? (
         <LoaderSpinner />
       ) : (
-        <ul>
+        <ul className="movie__list">
           {movies.map(movie => (
-            <li key={movie.id}>
+            <li key={movie.id} className="movie__listItem">
               <NavLink
                 to={{
                   pathname: `${match.url}/${movie.id}`,
                   state: { from: location },
                 }}
               >
-                {movie.original_title}
+                <img
+                  className="movie__img"
+                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                  alt={movie.original_title}
+                />
               </NavLink>
             </li>
           ))}
