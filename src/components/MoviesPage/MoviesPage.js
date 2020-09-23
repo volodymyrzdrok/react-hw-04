@@ -6,11 +6,12 @@ import queryString from 'query-string';
 import LoaderSpinner from '../Loader/Loader';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 
-const MoviesPage = ({ match }) => {
+const MoviesPage = props => {
   const [movies, setMovies] = useState([]);
   const [text, setText] = useState('');
   const [loader, setLoader] = useState(false);
   const [error, setError] = useState(null);
+
   let history = useHistory();
   let location = useLocation();
 
@@ -32,27 +33,10 @@ const MoviesPage = ({ match }) => {
       .finally(setLoader(false));
   };
 
-  // componentDidMount() {
-  //   const { query: nowQuery } = queryString.parse(location.search);
-
-  //   nowQuery && fetchFilms(nowQuery);
-  // }
   useEffect(() => {
     const { query: nowQuery } = queryString.parse(location.search);
-
     nowQuery && fetchFilms(nowQuery);
   }, [location.search]);
-
-  // componentDidUpdate(prevProps, prevState) {
-  //   const { query: pastQuery } = queryString.parse(prevProps.location.search);
-  //   const { query: nowQuery } = queryString.parse(location.search);
-
-  //   if (nowQuery !== pastQuery) {
-  //     this.fetchFilms(nowQuery);
-
-  // }
-
-  // useEffect(()=>{},[])
 
   return (
     <>
@@ -66,13 +50,17 @@ const MoviesPage = ({ match }) => {
             <li key={movie.id} className="movie__listItem">
               <NavLink
                 to={{
-                  pathname: `${match.url}/${movie.id}`,
+                  pathname: `${props.match.url}/${movie.id}`,
                   state: { from: location },
                 }}
               >
                 <img
                   className="movie__img"
-                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                  src={`https://image.tmdb.org/t/p/w500${
+                    movie.poster_path
+                      ? movie.poster_path
+                      : '/bOKjzWDxiDkgEQznhzP4kdeAHNI.jpg'
+                  }`}
                   alt={movie.original_title}
                 />
               </NavLink>
@@ -117,20 +105,20 @@ export default MoviesPage;
 //       .finally(() => this.setState({ loader: false }));
 //   };
 
-//   componentDidMount() {
-//     const { query: nowQuery } = queryString.parse(this.props.location.search);
+// componentDidMount() {
+//   const { query: nowQuery } = queryString.parse(this.props.location.search);
 
-//     nowQuery && this.fetchFilms(nowQuery);
+//   nowQuery && this.fetchFilms(nowQuery);
+// }
+
+// componentDidUpdate(prevProps, prevState) {
+//   const { query: pastQuery } = queryString.parse(prevProps.location.search);
+//   const { query: nowQuery } = queryString.parse(this.props.location.search);
+
+//   if (nowQuery !== pastQuery) {
+//     this.fetchFilms(nowQuery);
 //   }
-
-//   componentDidUpdate(prevProps, prevState) {
-//     const { query: pastQuery } = queryString.parse(prevProps.location.search);
-//     const { query: nowQuery } = queryString.parse(this.props.location.search);
-
-//     if (nowQuery !== pastQuery) {
-//       this.fetchFilms(nowQuery);
-//     }
-//   }
+// }
 
 //   render() {
 //     const { movies, error, text, loader } = this.state;

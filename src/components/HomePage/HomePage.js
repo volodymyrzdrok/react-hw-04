@@ -42,7 +42,11 @@ const HomePage = ({ match }) => {
               >
                 <img
                   className="movie__img"
-                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                  src={`https://image.tmdb.org/t/p/w500${
+                    movie.poster_path
+                      ? movie.poster_path
+                      : '/bOKjzWDxiDkgEQznhzP4kdeAHNI.jpg'
+                  }`}
                   alt={movie.original_title}
                 />
                 {/* {movie.original_title} */}
